@@ -57,7 +57,10 @@ const main = async () => {
   await apollo.start();
   apollo.applyMiddleware({
     app,
-    cors: { credentials: true, origin: "https://studio.apollographql.com" },
+    cors: {
+      credentials: true,
+      origin: ["https://studio.apollographql.com", "http://localhost:3000"],
+    },
   });
 
   app.set("trust proxy", process.env.NODE_ENV !== __prod__.toString());

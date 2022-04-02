@@ -52,6 +52,17 @@ export class UserResolver {
     @Arg("option") option: userDetails,
     @Ctx() { em, req }: MyContext
   ): Promise<UserResponse> {
+    if (option.username === "" || option.username === undefined) {
+      return {
+        error: [
+          {
+            field: "Username",
+            message: "Username should not be empty",
+          },
+        ],
+      };
+    }
+
     if (option.password === "" || option.password === undefined) {
       return {
         error: [
