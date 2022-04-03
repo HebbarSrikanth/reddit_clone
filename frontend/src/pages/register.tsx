@@ -4,6 +4,7 @@ import React from "react";
 import InputField from "../components/InputField";
 import Wrapper from "../components/Wrapper";
 import { useRegisterMutation } from "../generated/graphql";
+import { toErrorMap } from "../utils/toErrorMap";
 
 type Props = {};
 
@@ -16,6 +17,8 @@ const register = (props: Props) => {
         onSubmit={async (values, { setErrors }) => {
           const response = await register({ option: values });
           if (response.data?.registerUser.error) {
+            //Make sure the key value pair generated is equal to the id name present in the input field
+            setErrors(toErrorMap(response.data.registerUser.error));
           }
         }}
       >

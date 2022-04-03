@@ -15,17 +15,17 @@ import argon2 from "argon2";
 @InputType()
 class userDetails {
   @Field()
-  username!: string;
+  username: string;
   @Field()
-  password!: string;
+  password: string;
 }
 
 @ObjectType()
 class FieldError {
   @Field()
-  field!: string;
+  field: string;
   @Field()
-  message!: string;
+  message: string;
 }
 
 @ObjectType()
